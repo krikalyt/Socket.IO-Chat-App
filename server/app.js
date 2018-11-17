@@ -10,10 +10,16 @@ var io = socketIO(server);
 app.use(express.static(publicpath));
 
 
-//used 
 io.on('connection',(socket)=>{
-    //all your event..
+    console.log("Connected");
+    socket.emit("newEmail",{
+        from:"krishna@krikalyt.com"
+    });
+
+    socket.on("fuck",(data)=>{
+        console.log("this is the fucking data"+data.data);
+    })
 });
 server.listen(port,()=>{
     console.log(`Application is Running on port ${port}`);
-})
+});
