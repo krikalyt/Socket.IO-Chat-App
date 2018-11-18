@@ -14,3 +14,8 @@ socket.on("newEmail",(email)=>{
 socket.emit("fuck",{
     data:"i really want to fuck you...",
 });
+
+socket.on("getMessage",(message)=>{
+    console.log(message.from);
+    console.log(message.text);
+})

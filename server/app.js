@@ -18,7 +18,23 @@ io.on('connection',(socket)=>{
 
     socket.on("fuck",(data)=>{
         console.log("this is the fucking data"+data.data);
-    })
+    });
+
+    socket.on("createMessage",(message)=>{
+        console.log("createMessage"+message.from);
+        console.log("data",message.text);
+        //brodcast self too.
+        // io.emit("getMessage",{
+        //     from:message.from,
+        //     text:message.text
+        // });
+
+        //brodcast to all user
+        socket.broadcast.emit("getMessage",{
+            from:message.from,
+            text:message.text
+        });
+    });
 });
 server.listen(port,()=>{
     console.log(`Application is Running on port ${port}`);
